@@ -13,6 +13,7 @@ function createGallery(listImage) {
         alt="${image.description}"></a></div> </li>`
     )
     .join("");
-  gallery.insertAdjacentHTML("beforeend", gallery);
+  return gallery;
+  //gallery.insertAdjacentHTML("beforeend", gallery);
 }
-createGallery(images);
+//createGallery(images);
