@@ -4,16 +4,24 @@ import { galleryItems } from "./gallery-items.js";
 console.log(galleryItems);
 
 const gallery = document.querySelector(".gallery");
-function createGallery(listImage) {
-  const gallery = listImage
-    .map(
-      (image) =>
-        `<li> <div><a href=""><img class="gallery__image" 
-        src=${image.preview} data-source=${image.original} 
-        alt="${image.description}"></a></div> </li>`
-    )
-    .join("");
-  return gallery;
-  //gallery.insertAdjacentHTML("beforeend", gallery);
-}
-//createGallery(images);
+const items = galleryItems.map(({ original, preview, description }) => {
+  const galleryLink = document.createElement("a");
+  galleryLink.className = "gallery__link";
+  galleryLink.href = original;
+
+  const galleryImage = document.createElement("img");
+  galleryImage.className = "gallery__image";
+  galleryImage.src = preview;
+  galleryImage.setAttribute("title", description);
+  galleryImage.alt = description;
+  galleryLink.append(galleryImage);
+  return galleryLink;
+});
+
+gallery.append(...items);
+
+const instance = basicLightbox.create(`
+    <img src="/01-gallery.html" width="800" height="600">
+`);
+
+instance.show();
