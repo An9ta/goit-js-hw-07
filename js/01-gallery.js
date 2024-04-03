@@ -12,6 +12,7 @@ const items = galleryItems.map(({ original, preview, description }) => {
   const galleryImage = document.createElement("img");
   galleryImage.className = "gallery__image";
   galleryImage.src = preview;
+  galleryImage.setAttribute("data-source", original);
   galleryImage.setAttribute("title", description);
   galleryImage.alt = description;
   galleryLink.append(galleryImage);
@@ -35,8 +36,10 @@ gallery.addEventListener("click", (e) => {
   instance.show();
 
   gallery.addEventListener("keydown", (e) => {
-    if (event.key === "Escape") {
+    if (e.key === "Escape") {
       instance.close();
     }
   });
 });
+
+//galleryImage.setAttribute("data-source", oryginal);
